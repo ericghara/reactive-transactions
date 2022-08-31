@@ -1,0 +1,87 @@
+plugins {
+	id 'org.springframework.boot' version '3.0.0-M4'
+	id 'io.spring.dependency-management' version '1.0.12.RELEASE'
+	id 'java'
+	id 'nu.studer.jooq' version '7.1.1'
+}
+
+group = 'org.ericgha'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+	implementation 'org.springframework.boot:spring-boot-starter-jooq'
+	implementation 'org.jooq:jooq-postgres-extensions'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.postgresql:postgresql'
+	runtimeOnly 'org.postgresql:r2dbc-postgresql'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+	jooqGenerator 'org.postgresql:postgresql:42.3.2'
+	jooqGenerator 'org.jooq:jooq-postgres-extensions'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+jooq {
+	version = '3.17.2'
+	configurations {
+
+		main {  // name of the jOOQ configuration
+			generateSchemaSourceOnCompilation = true  // default (can be omitted)
+
+			generationTool {
+				logging = "WARN"
+				jdbc {
+					driver = 'org.postgresql.Driver'
+					url = 'jdbc:postgresql://localhost:5432/link_ts'
+					user = 'postgres'
+					password = 'postgres'
+				}
+				generator {
+					name = 'org.jooq.codegen.DefaultGenerator'
+					database {
+						name = 'org.jooq.meta.postgres.PostgresDatabase'
+						inputSchema = 'public'
+						forcedTypes {
+							forcedType {
+//                                name = 'varchar'
+								userType = 'org.jooq.postgres.extensions.types.Ltree'
+								binding = 'org.jooq.postgres.extensions.bindings.LtreeBinding'
+								includeExpression = '.*tree.path.*'
+								includeTypes = 'LTREE?'
+							}
+						}
+					}
+					generate {
+						deprecated = false
+						records = true
+						immutablePojos = true
+						fluentSetters = true
+					}
+					target {
+						packageName = 'com.ericgha.docuCloud.jooq'
+						directory = 'build/generated/source/jooq/main'
+					}
+					strategy.name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+				}
+			}
+		}
+	}
+}
+
