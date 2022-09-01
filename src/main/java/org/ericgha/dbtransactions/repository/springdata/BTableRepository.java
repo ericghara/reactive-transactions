@@ -1,4 +1,4 @@
-package org.ericgha.dbtransactions.repository;
+package org.ericgha.dbtransactions.repository.springdata;
 
 import lombok.NonNull;
 import org.ericgha.dbtransactions.entity.BTableEntity;
@@ -15,7 +15,7 @@ import java.util.UUID;
 public interface BTableRepository extends ReactiveCrudRepository<BTableEntity, UUID> {
 
     @Modifying
-    @Query( "DELETE from b_table where id = $1" )
+    @Query("DELETE from b_table where id = $1")
     Mono<Long> deleteByIdReturning(@NonNull UUID uuid);
 
 }

@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.Resource;
 import org.springframework.r2dbc.connection.R2dbcTransactionManager;
 import org.springframework.transaction.ReactiveTransactionManager;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.reactive.TransactionalOperator;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
@@ -112,24 +113,16 @@ class JooqServiceTest {
     }
 
     @Test
-    void insertLinkRollsBackPriorInserts(@Autowired ConnectionFactory connectionFactory) {
-        ReactiveTransactionManager transactionManager = new R2dbcTransactionManager(connectionFactory);
-        TransactionalOperator trans = TransactionalOperator.create(transactionManager);
+    // can't annotate as @Transacitonal, so using operator
+    void insertLinkRollsBackPriorInserts(@Autowired TransactionalOperator rxtx) {
         var aEntity = new ATableEntity(UUID.randomUUID() );
         var bEntity = new BTableEntity(UUID.randomUUID() );
         var insert = jooqService.insertPair(aEntity, bEntity)
                 // will fail
-                .flatMap(x -> jooqService.insertLink( aEntity.getId(), UUID.randomUUID() ) );
-        jooqService.transact2( tx -> insert ).as(StepVerifier::create).verifyError(DataAccessException.class);
+                .flatMap(x -> jooqService.insertLink( aEntity.getId(), UUID.randomUUID() ) )
+                .as(rxtx::transactional);
+        insert.as(StepVerifier::create).verifyError(DataAccessException.class);
         jooqService.fetch( aEntity ).as(StepVerifier::create).expectNextCount( 0 ).verifyComplete();
         jooqService.fetch( bEntity ).as(StepVerifier::create).expectNextCount( 0 ).verifyComplete();
-    }
-
-    @Test
-    void fetch() {
-    }
-
-    @Test
-    void testFetch() {
     }
 }
