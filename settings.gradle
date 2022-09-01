@@ -4,4 +4,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'db-transactions'
+rootProject.name = 'reactive-transactions'
