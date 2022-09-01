@@ -36,7 +36,7 @@ class SpringDataServiceTest {
     void createPair() {
         var tableAEntity = new ATableEntity( );
         var tableBEntity = new BTableEntity( );
-        var insert = domainService.createPair( tableAEntity, tableBEntity );
+        var insert = domainService.insertPair( tableAEntity, tableBEntity );
         StepVerifier.create(insert).assertNext( tup2 -> {
             assertEquals(tableAEntity, tup2.getT1(), "A" );
             assertEquals( tableBEntity, tup2.getT2(), "B" );
@@ -49,7 +49,7 @@ class SpringDataServiceTest {
     void deletePairCommits() {
         var tableAEntity = new ATableEntity( );
         var tableBEntity = new BTableEntity( );
-        domainService.createPair( tableAEntity, tableBEntity ).block();
+        domainService.insertPair( tableAEntity, tableBEntity ).block();
         var del = domainService.deletePair( tableAEntity.getId(), tableBEntity.getId() );
         StepVerifier.create(del).verifyComplete();
     }
@@ -58,7 +58,7 @@ class SpringDataServiceTest {
     void deletePairRollsBack() {
         var tableAEntity = new ATableEntity( );
         var tableBEntity = new BTableEntity( );
-        domainService.createPair( tableAEntity, tableBEntity ).block();
+        domainService.insertPair( tableAEntity, tableBEntity ).block();
         var del = domainService.deletePair( tableAEntity.getId(), UUID.randomUUID() );
         StepVerifier.create(del).verifyError(IllegalStateException.class);
         // assert tableA got rolled back

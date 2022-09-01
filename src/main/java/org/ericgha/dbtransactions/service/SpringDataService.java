@@ -14,13 +14,13 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class SpringDataService implements DbInterface {
+public class SpringDataService implements DbService {
 
     private final ATableRepository aTableRepository;
     private final BTableRepository bTableRepository;
 
     @Transactional
-    public Mono<Tuple2<ATableEntity, BTableEntity>> createPair(ATableEntity tableA, BTableEntity tableB) {
+    public Mono<Tuple2<ATableEntity, BTableEntity>> insertPair(ATableEntity tableA, BTableEntity tableB) {
         var aIns = aTableRepository.save(tableA);
         var bIns = bTableRepository.save( tableB );
         return Mono.zip(aIns, bIns);

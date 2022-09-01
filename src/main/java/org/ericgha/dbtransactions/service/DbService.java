@@ -7,10 +7,10 @@ import reactor.util.function.Tuple2;
 
 import java.util.UUID;
 
-public interface DbInterface {
+public interface DbService {
 
 
-    Mono<Tuple2<ATableEntity, BTableEntity>> createPair(ATableEntity tableA, BTableEntity tableB);
+    Mono<Tuple2<ATableEntity, BTableEntity>> insertPair(ATableEntity tableA, BTableEntity tableB);
 
     Mono<Void> deletePair(UUID a, UUID b);
 

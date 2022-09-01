@@ -1,6 +1,5 @@
 package org.ericgha.dbtransactions.repository;
 
-import com.ericgha.docuCloud.jooq.Routines;
 import lombok.RequiredArgsConstructor;
 import org.ericgha.dbtransactions.entity.ATableEntity;
 import org.jooq.DSLContext;
