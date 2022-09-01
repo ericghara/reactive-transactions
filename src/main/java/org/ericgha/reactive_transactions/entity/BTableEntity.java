@@ -1,4 +1,4 @@
-package org.ericgha.dbtransactions.entity;
+package org.ericgha.reactive_transactions.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

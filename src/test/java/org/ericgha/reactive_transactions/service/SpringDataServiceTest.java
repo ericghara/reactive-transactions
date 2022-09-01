@@ -1,7 +1,7 @@
-package org.ericgha.dbtransactions.service;
+package org.ericgha.reactive_transactions.service;
 
-import org.ericgha.dbtransactions.entity.ATableEntity;
-import org.ericgha.dbtransactions.entity.BTableEntity;
+import org.ericgha.reactive_transactions.entity.ATableEntity;
+import org.ericgha.reactive_transactions.entity.BTableEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

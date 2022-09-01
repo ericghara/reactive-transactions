@@ -1,9 +1,9 @@
-package org.ericgha.dbtransactions.service;
+package org.ericgha.reactive_transactions.service;
 
-import org.ericgha.dbtransactions.entity.ATableEntity;
-import org.ericgha.dbtransactions.entity.BTableEntity;
-import org.ericgha.dbtransactions.entity.LinkEntity;
-import org.ericgha.dbtransactions.manager.JooqTransaction;
+import org.ericgha.reactive_transactions.entity.ATableEntity;
+import org.ericgha.reactive_transactions.entity.BTableEntity;
+import org.ericgha.reactive_transactions.entity.LinkEntity;
+import org.ericgha.reactive_transactions.manager.JooqTransaction;
 import org.jooq.exception.DataAccessException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

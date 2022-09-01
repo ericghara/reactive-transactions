@@ -1,4 +1,4 @@
-package org.ericgha.dbtransactions.manager;
+package org.ericgha.reactive_transactions.manager;
 
 import io.r2dbc.spi.ConnectionFactory;
 import lombok.AllArgsConstructor;

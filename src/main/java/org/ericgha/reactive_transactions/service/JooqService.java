@@ -1,17 +1,12 @@
-package org.ericgha.dbtransactions.service;
+package org.ericgha.reactive_transactions.service;
 
-import io.r2dbc.spi.ConnectionFactory;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.ericgha.dbtransactions.entity.ATableEntity;
-import org.ericgha.dbtransactions.entity.BTableEntity;
-import org.ericgha.dbtransactions.entity.LinkEntity;
-import org.ericgha.dbtransactions.repository.jooq.ATableJooq;
-import org.ericgha.dbtransactions.repository.jooq.BTableJooq;
-import org.ericgha.dbtransactions.repository.jooq.LinkTableJooq;
-import org.jooq.DSLContext;
-import org.jooq.impl.DSL;
-import org.springframework.r2dbc.connection.ConnectionFactoryUtils;
+import org.ericgha.reactive_transactions.entity.ATableEntity;
+import org.ericgha.reactive_transactions.entity.BTableEntity;
+import org.ericgha.reactive_transactions.entity.LinkEntity;
+import org.ericgha.reactive_transactions.repository.jooq.ATableJooq;
+import org.ericgha.reactive_transactions.repository.jooq.BTableJooq;
+import org.ericgha.reactive_transactions.repository.jooq.LinkTableJooq;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.reactive.TransactionalOperator;
@@ -20,7 +15,6 @@ import reactor.util.function.Tuple2;
 
 import java.util.Objects;
 import java.util.UUID;
-import java.util.function.Function;
 
 @RequiredArgsConstructor
 @Service

@@ -1,7 +1,7 @@
-package org.ericgha.dbtransactions.service;
+package org.ericgha.reactive_transactions.service;
 
-import org.ericgha.dbtransactions.entity.ATableEntity;
-import org.ericgha.dbtransactions.entity.BTableEntity;
+import org.ericgha.reactive_transactions.entity.ATableEntity;
+import org.ericgha.reactive_transactions.entity.BTableEntity;
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 

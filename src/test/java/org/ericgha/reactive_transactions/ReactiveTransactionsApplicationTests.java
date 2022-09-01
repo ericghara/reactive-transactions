@@ -1,10 +1,10 @@
-package org.ericgha.dbtransactions;
+package org.ericgha.reactive_transactions;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DbTransactionsApplicationTests {
+class ReactiveTransactionsApplicationTests {
 
 	@Test
 	void contextLoads() {

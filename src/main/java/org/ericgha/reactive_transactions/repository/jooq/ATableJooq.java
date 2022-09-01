@@ -1,8 +1,8 @@
-package org.ericgha.dbtransactions.repository.jooq;
+package org.ericgha.reactive_transactions.repository.jooq;
 
 import lombok.RequiredArgsConstructor;
-import org.ericgha.dbtransactions.entity.ATableEntity;
-import org.ericgha.dbtransactions.manager.JooqTransaction;
+import org.ericgha.reactive_transactions.entity.ATableEntity;
+import org.ericgha.reactive_transactions.manager.JooqTransaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;

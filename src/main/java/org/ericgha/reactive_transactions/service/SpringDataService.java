@@ -1,10 +1,10 @@
-package org.ericgha.dbtransactions.service;
+package org.ericgha.reactive_transactions.service;
 
 import lombok.AllArgsConstructor;
-import org.ericgha.dbtransactions.entity.ATableEntity;
-import org.ericgha.dbtransactions.entity.BTableEntity;
-import org.ericgha.dbtransactions.repository.springdata.ATableRepository;
-import org.ericgha.dbtransactions.repository.springdata.BTableRepository;
+import org.ericgha.reactive_transactions.entity.ATableEntity;
+import org.ericgha.reactive_transactions.entity.BTableEntity;
+import org.ericgha.reactive_transactions.repository.springdata.ATableRepository;
+import org.ericgha.reactive_transactions.repository.springdata.BTableRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;

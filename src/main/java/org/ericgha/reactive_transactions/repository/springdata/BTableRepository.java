@@ -1,7 +1,7 @@
-package org.ericgha.dbtransactions.repository.springdata;
+package org.ericgha.reactive_transactions.repository.springdata;
 
 import lombok.NonNull;
-import org.ericgha.dbtransactions.entity.BTableEntity;
+import org.ericgha.reactive_transactions.entity.BTableEntity;
 import org.springframework.data.r2dbc.repository.Modifying;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
